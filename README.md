@@ -188,3 +188,72 @@ module good_mux(i0, i1, sel, y);
   assign y = _3_;
 endmodule
 ```
+## Day 2
+
+### Important notes
+- Standard Cell Library files will contain details of all types of individual cells with different parameters of area, power and delay.
+- PVT corners different for different .lib files
+- Hierarchical v/s Flat Synthesis.
+- To aviod glitch propagation in multiple combinational blocks, flip flops are used to stabilize data before each combinational block.
+- Asynchronous and synchronous reset/set with D_FF explored.
+
+### Commands
+~~~
+$ yosys
+> read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+> read_verilog multiple_modules.v
+> synth -top multiple_modules
+> abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+> show multiple_modules
+> write_verilog -noattr multiple_modules_hier.v
+> flatten
+> write_verilog -noattr multiple_modules_flat.v
+~~~
+
+### Synthesis Schematic and netlist for multiple modules:
+![3](https://user-images.githubusercontent.com/112770970/219856449-00bdabd6-3f8f-4382-858a-7b7b5cb828cb.JPG)
+
+![1](https://user-images.githubusercontent.com/112770970/219856497-04ea6607-1bfd-4571-8a71-248c019176ad.JPG)
+
+![4](https://user-images.githubusercontent.com/112770970/219856455-dc79ae75-d879-4c20-8e4a-ba3fec07ea69.JPG)
+
+### Flat Synthesis
+![5](https://user-images.githubusercontent.com/112770970/219856481-5616038e-c92f-4155-89f6-c5da338a5e95.JPG)
+
+### D-Flip Flop Synthesis
+
+Use addtional command:
+~~~
+dfflibmap -liberty <.lib file path>
+~~~
+
+Asynchronous reset:
+![asynch_reset syn](https://user-images.githubusercontent.com/112770970/219856560-2ec3e92e-3407-4c05-bf1a-228b95236cfa.JPG)
+
+Synchronous reset:
+![synch_reset synthesis](https://user-images.githubusercontent.com/112770970/219856579-7368ea1f-cb77-47e5-8e94-3f54eeb614de.JPG)
+
+### D-Flip FLop Simulation
+Asynchronous reset:
+
+![asynch_reset wave](https://user-images.githubusercontent.com/112770970/219856663-2603d11c-efe8-4f17-ac1a-627dc94a15e0.JPG)
+
+Synchronous reset:
+
+![synch_reset](https://user-images.githubusercontent.com/112770970/219856669-6514e587-a19c-40c8-84df-4bd1635636a4.JPG)
+
+### Interesting Optimizations:
+
+#### Synthesis of some special functions:
+
+- mult_2.v : y = 2 * a; where y is 4 bit and a is 3 bit number
+
+![opt1](https://user-images.githubusercontent.com/112770970/219856933-8d6e4b57-3f85-4f09-b9cf-c1c55640e13d.JPG)
+![6](https://user-images.githubusercontent.com/112770970/219856940-bd3dff20-d47d-4409-a761-02d4034cfd5b.JPG)
+
+- mult_8.v : y = 9 * a; where y is 6 bit and a is 3 bit number
+
+![opt2](https://user-images.githubusercontent.com/112770970/219857110-11a15a81-a286-4986-af93-a03f5cae29da.JPG)
+![7](https://user-images.githubusercontent.com/112770970/219857004-f9c586ba-d3b2-4f4b-acea-63524538e85e.JPG)
+
+- *In these cases, no circuit is synthesised*
