@@ -192,12 +192,14 @@ endmodule
 
 ### Important notes
 - Standard Cell Library files will contain details of all types of individual cells with different parameters of area, power and delay.
+- We need both fast and slow cells for performace and hold time respectively.
+- Wider area gives faster cells
 - PVT corners different for different .lib files
 - Hierarchical v/s Flat Synthesis.
 - To aviod glitch propagation in multiple combinational blocks, flip flops are used to stabilize data before each combinational block.
 - Asynchronous and synchronous reset/set with D_FF explored.
 
-### Commands
+### Procedure
 ~~~
 $ yosys
 > read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
@@ -220,12 +222,16 @@ $ yosys
 ### Flat Synthesis
 ![5](https://user-images.githubusercontent.com/112770970/219856481-5616038e-c92f-4155-89f6-c5da338a5e95.JPG)
 
+### Inferences
+- PMOS in series is bad because it has low mobility
+
 ### D-Flip Flop Synthesis
 
 Use addtional command:
 ~~~
 dfflibmap -liberty <.lib file path>
 ~~~
+*this will only for D-FF already present in library*
 
 Asynchronous reset:
 ![asynch_reset syn](https://user-images.githubusercontent.com/112770970/219856560-2ec3e92e-3407-4c05-bf1a-228b95236cfa.JPG)
@@ -247,11 +253,14 @@ Synchronous reset:
 #### Synthesis of some special functions:
 
 - mult_2.v : y = 2 * a; where y is 4 bit and a is 3 bit number
+- But if you closely observe, you can obtain y by right shifting a by 1 bit
+- Likewise if you want to multiply a number by 4, you right shift 2 bits and for 8, you right shift 3 times
 
 ![opt1](https://user-images.githubusercontent.com/112770970/219856933-8d6e4b57-3f85-4f09-b9cf-c1c55640e13d.JPG)
 ![6](https://user-images.githubusercontent.com/112770970/219856940-bd3dff20-d47d-4409-a761-02d4034cfd5b.JPG)
 
 - mult_8.v : y = 9 * a; where y is 6 bit and a is 3 bit number
+- (multiplication by nine can also be written as ax8 + a and hence y is just a appended with a)
 
 ![opt2](https://user-images.githubusercontent.com/112770970/219857110-11a15a81-a286-4986-af93-a03f5cae29da.JPG)
 ![7](https://user-images.githubusercontent.com/112770970/219857004-f9c586ba-d3b2-4f4b-acea-63524538e85e.JPG)
