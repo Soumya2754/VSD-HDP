@@ -136,4 +136,5 @@ $ gtkwave tb_good_mux.vcd
 ```
 
 *gtkwave*
+![Screenshot from 2023-02-18 14-10-15](https://user-images.githubusercontent.com/83526493/219851835-da895ae8-02d1-4522-81a4-d1d62359d97a.png)
 
