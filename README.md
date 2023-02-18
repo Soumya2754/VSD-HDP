@@ -266,3 +266,65 @@ Synchronous reset:
 ![7](https://user-images.githubusercontent.com/112770970/219857004-f9c586ba-d3b2-4f4b-acea-63524538e85e.JPG)
 
 - *In these cases, no cells are synthesised*
+## Day 3
+
+### Logic Optimizations
+- Combinational Logic Optimization
+  * Constant Propagation - when effectively the combination is just propagating a constant 
+  * Boolean Logic Optimization - De-Morgan's laws and other Boolean rules.
+ 
+- Sequential Logic Optimisation
+  * Sequential Constant Propagation - This is different from combinational constant propagation because clock is involved
+  	- DFF with D input grounded and reset is equivalent to Q = 0 and DFF is useless
+  	- but DFF with D grounded and set is not equivalent to Q = set and FF is to be retained
+  * State Optimization - unused states are removed
+  * Retiming - the combinational blocks between different flops are shifted such that their effective clock frequency of the whole circuit increases without violating setup and hold, thereby, increasing performance
+  * Sequential logic cloning - additional flops are added whichever has positive slack when the other flops in the design are placed far apart in the floorplan to meet their timing requirements and utilise this positive time slack as propagation delay
+
+*Command to use for optimisation:
+~~~
+$ opt_clean -purge
+~~~
+
+
+### Combinational Logic Optimisations
+
+*opt_check4.v* :
+~~~
+ assign y = a ? (b ? (a & c) : c) : (!c);
+~~~
+
+![opt_check_4](https://user-images.githubusercontent.com/112770970/219863972-5bd9f48a-c1ab-4741-a335-8d17e4fa553e.JPG)
+![opt_check_4_cells](https://user-images.githubusercontent.com/112770970/219863977-574f6e43-0a48-4efe-824a-cfb8daff07e4.JPG)
+
+*multiple_modules_opt file*:
+~~~
+ assign y = c|(a&b);
+~~~
+
+![multiple_modules_opt](https://user-images.githubusercontent.com/112770970/219864034-3b9e57d2-6528-4dca-9755-fe2f206682ac.JPG)
+
+### Synthesis Illustrating Sequential Constant Propagation:
+- In this case, the flip flop is redundant.
+
+![dff_const4_syn](https://user-images.githubusercontent.com/112770970/219862146-472e3e1a-8f37-4141-ad9c-41887ef9b774.JPG)
+
+- but here the FF is not redundant
+
+![dff_const5_syn](https://user-images.githubusercontent.com/112770970/219862301-bb179eda-0dd5-4ddf-ab25-c005795ecf7a.JPG)
+
+### Simulation Illustrating Sequential Constant Propagation:
+- In this case, the output q always remains 1, therefore flip flop is not needed.
+ 
+![dff_const4_wave](https://user-images.githubusercontent.com/112770970/219862898-284bc9b5-bc93-489f-a125-9eea03a87526.JPG)
+
+- But here we can observe that Q is not equal to !reset
+![dff_const5_wave](https://user-images.githubusercontent.com/112770970/219862976-c340e657-6fef-402b-b7d9-00516d301660.JPG)
+
+### Synthesis of unused output (3-bit Counter example) :
+
+![counter_opt1](https://user-images.githubusercontent.com/112770970/219864111-d46d1829-467a-468f-9b26-f77ab72cf9a9.JPG)
+
+### Synthesis if all output ports are used (3-bit Counter example) :
+
+![counter_opt2](https://user-images.githubusercontent.com/112770970/219864154-864adb26-e33a-4abb-9647-8415fd40ecb7.JPG)
