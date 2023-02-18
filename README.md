@@ -24,6 +24,8 @@ $ sudo apt-get install build-essential clang bison flex \
 $ make 
 $ sudo make install
 ```
+![Screenshot from 2023-02-18 09-51-15](https://user-images.githubusercontent.com/83526493/219851718-059c8120-a14f-41fa-a86a-e9054f8a23ba.png)
+
 ### OpenSTA
 *To install cmake for 18.04 (if not present)*
 ```
@@ -45,6 +47,7 @@ $ cd build
 $ cmake ..
 $ make
 ```
+![Screenshot from 2023-02-18 10-24-48](https://user-images.githubusercontent.com/83526493/219851603-8e197286-ee63-43bd-8067-5c58f93f95f8.png)
 
 ### ngspice
 * Download ngspice-37.tar.gz from old releases parent folder from
@@ -58,6 +61,8 @@ $ ../configure  --with-x --with-readline=yes --disable-debug
 $ make
 $ sudo make install
 ```
+![Screenshot from 2023-02-18 09-51-56](https://user-images.githubusercontent.com/83526493/219851683-58c7479c-eba6-4b24-89dd-c0f3dcaebbca.png)
+
 ### iverilog
 ```
 $ sudo apt-get install iverilog
@@ -78,3 +83,57 @@ $   sudo apt-get install mesa-common-dev libglu1-mesa-dev
 $   sudo apt-get install libncurses-dev
 ```
 ## Day 1
+Simulation of a 2x1 mux using iverilog
+*verilog code*
+```
+module good_mux (input i0 , input i1 , input sel , output reg y);
+always @ (*)
+begin
+	if(sel)
+		y <= i1;
+	else 
+		y <= i0;
+end
+endmodule
+```
+*testbench*
+```
+`timescale 1ns / 1ps
+module tb_good_mux;
+	// Inputs
+	reg i0,i1,sel;
+	// Outputs
+	wire y;
+
+        // Instantiate the Unit Under Test (UUT)
+	good_mux uut (
+		.sel(sel),
+		.i0(i0),
+		.i1(i1),
+		.y(y)
+	);
+
+	initial begin
+	$dumpfile("tb_good_mux.vcd");
+	$dumpvars(0,tb_good_mux);
+	// Initialize Inputs
+	sel = 0;
+	i0 = 0;
+	i1 = 0;
+	#300 $finish;
+	end
+
+always #75 sel = ~sel;
+always #10 i0 = ~i0;
+always #55 i1 = ~i1;
+endmodule
+```
+### Procedure
+```
+$ iverilog good_mux.v tb_good_mux.v
+$ ./a.out
+$ gtkwave tb_good_mux.vcd
+```
+
+*gtkwave*
+
