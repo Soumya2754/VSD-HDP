@@ -331,6 +331,13 @@ $ opt_clean -purge
 ### Synthesis if all output ports are used (3-bit Counter example) :
 
 ![counter_opt2](https://user-images.githubusercontent.com/112770970/219864154-864adb26-e33a-4abb-9647-8415fd40ecb7.JPG)
+## Day_6
+### Universal shift Register
+![WhatsApp Image 2023-03-10 at 15 22 24](https://user-images.githubusercontent.com/83526493/224351419-173c716b-5bc8-49bd-8b66-6639a152bcac.jpg)
+![WhatsApp Image 2023-03-10 at 15 22 25](https://user-images.githubusercontent.com/83526493/224351486-92a1113d-1fde-454a-8a6a-0eab87e1b3e3.jpg)
+
+![WhatsApp Image 2023-03-10 at 15 40 46](https://user-images.githubusercontent.com/83526493/224351542-165127b9-98e6-4eb5-b79b-4971a42a5f74.jpg)
+![WhatsApp Image 2023-03-10 at 15 44 34](https://user-images.githubusercontent.com/83526493/224351578-36701c0b-3ed6-431b-971e-ef1bce9df00a.jpg)
 
 ## Day_7
 ### Advanced synthesis and STA using Design compiler
