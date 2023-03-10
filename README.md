@@ -332,3 +332,4 @@ $ opt_clean -purge
 ## Day 7
 ### Advanced synthesis and STA using Design compiler
 #### Max delay constraints
+*T <sub>clk</sub> > T <sub>CQ</sub> + T <sub>comb</sub> + T <sub>setup</sub>*
