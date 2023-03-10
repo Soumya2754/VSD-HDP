@@ -328,3 +328,7 @@ $ opt_clean -purge
 ### Synthesis if all output ports are used (3-bit Counter example) :
 
 ![counter_opt2](https://user-images.githubusercontent.com/112770970/219864154-864adb26-e33a-4abb-9647-8415fd40ecb7.JPG)
+
+## Day 7
+### Advanced synthesis and STA using Design compiler
+#### Max delay constraints
