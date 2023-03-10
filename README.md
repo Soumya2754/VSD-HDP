@@ -1,6 +1,6 @@
 # VSD-HDP Status
 Progress Quick-Link:<br />
-[Day 7](#Day7)<br />
+[Day 7](#Day 7)<br />
 
 ## Day 0: Installation
 *Before installing run the command below*
