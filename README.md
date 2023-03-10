@@ -1,6 +1,6 @@
 # VSD-HDP Status
 Progress Quick-Link:<br />
-[Day 7](#Day 7)<br />
+[Day 7](#Day_7)<br />
 
 ## Day 0: Installation
 *Before installing run the command below*
@@ -332,7 +332,7 @@ $ opt_clean -purge
 
 ![counter_opt2](https://user-images.githubusercontent.com/112770970/219864154-864adb26-e33a-4abb-9647-8415fd40ecb7.JPG)
 
-## Day 7
+## Day_7
 ### Advanced synthesis and STA using Design compiler
 #### Max delay constraints
 *T <sub>clk</sub> > T <sub>CQ</sub> + T <sub>comb</sub> + T <sub>setup</sub>*
