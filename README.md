@@ -348,6 +348,45 @@ $ opt_clean -purge
 - It can be observed from the above images that there is no simulation synthesis mismatch occuring
 
 ## Day_7
-### Advanced synthesis and STA using Design compiler
+### Basics of STA
 #### Max delay constraints
-*T <sub>clk</sub> > T <sub>CQ</sub> + T <sub>comb</sub> + T <sub>setup</sub>*
+*T <sub>clk</sub> >= T <sub>CQ</sub> + T <sub>comb</sub> + T <sub>setup</sub>*
+
+#### Min delay constraints
+*T <sub>clk</sub> + T <sub>hold<sub> <= T <sub>CQ</sub> + T <sub>comb</sub>*
+	
+Note : The above equations are used in calculating maximum frequency of clock and modelling combinational delay. 
+       Input external delay and output external delay are also similarly specified.
+
+- **Basic concepts**
+  * Delay of a cell is a function of input transition and output load.
+  * Timing arcs -> combinational and sequential
+  * Setup and hold time for a latch and flip flop is around the sampling point.
+  * In positive level triggered latch, setup time is before the falling edge (last sampled point).
+  * In negative level triggered latch, setup time is before the rising edge (last sampled point).
+
+
+- **Timing paths**
+  * There are 4 types of timing paths based on the data flow between start and end points:	
+  * Clock to D pin (register to register)
+  * Clock to output (register to out)
+  * Input to D pin  (input to register)
+  * Input to output 
+  
+
+- **Constraints**
+  * Modeling of load capacitance (max value must be specified).
+  * Using buffers to reduce fanout, thereby, decreasing the max load capacitance.
+
+
+- **Lookup table**
+  * 2D table consisting of corresponding output load and input transistion values.
+  * Values in between not specified are calculated through interpolation.
+  
+
+- **Unateness**
+  * Positive unateness -> AND OR
+  * Negative unateness -> NAND NOR NOT
+  * Non-unateness -> XOR XNOR
+
+- Note: All the above considerations are specified in the .lib file.
