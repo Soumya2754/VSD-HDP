@@ -1,6 +1,14 @@
 # VSD-HDP Status
+
 Progress Quick-Link:<br />
+[Day 1](#Day_1)<br />
+[Day 2](#Day_2)<br />
+[Day 3](#Day_3)<br />
+[Day 4](#Day_4)<br />
+[Day 5](#Day_5)<br />
+[Day 6](#Day_6)<br />
 [Day 7](#Day_7)<br />
+
 
 ## Day 0: Installation
 *Before installing run the command below*
@@ -331,7 +339,144 @@ $ opt_clean -purge
 ### Synthesis if all output ports are used (3-bit Counter example) :
 
 ![counter_opt2](https://user-images.githubusercontent.com/112770970/219864154-864adb26-e33a-4abb-9647-8415fd40ecb7.JPG)
+
+
+## Day_4
+
+### Bad Mux Example
+- Simulation of bad_mux
+
+![bad_mux sim](https://user-images.githubusercontent.com/112770970/221162808-0cbf452d-4b55-4915-a101-bf1cecc028c5.JPG)
+
+
+- Synthesis of bad_mux
+
+![bad_mux synth](https://user-images.githubusercontent.com/112770970/221163038-f39f861b-60d5-4ed8-a888-2006b6cdee5c.JPG)
+
+
+- Simulation of the gate level netlist generated
+
+![bad_mux _netlist_sim](https://user-images.githubusercontent.com/112770970/221163175-f4eb136e-20b1-4f3d-92ce-f75b7156ecb5.JPG)
+
+- It can be seen above that there clearly exists a simulation synthesis mismatch.
+- Synthesis gave the correct waveform and no latch was inferred.
+- Simulation indicates the behaviour of a latch.
+
+### Blocking Assignment Caveats
+- Simulation
+
+![BA sim](https://user-images.githubusercontent.com/112770970/221163838-b6063b1c-b192-4fdd-9928-1a76642e510f.JPG)
+
+
+- Synthesis
+
+![BA synth](https://user-images.githubusercontent.com/112770970/221163927-37720a22-213c-46a2-a705-5cad774c4cf9.JPG)
+
+
+- Simulation of the gate level netlist generated
+
+![BA netlist sim](https://user-images.githubusercontent.com/112770970/221163993-3e7f7f23-e216-4db9-813c-f27e9a275072.JPG)
+
+- A delay/flop behaviour can be observed in the simulation waveform.
+- This design also results in a simulation synthesis mismatch.
+
+
+## Day_5
+
+### Incomplete If statements
+- Simulation
+
+![incomp if sim](https://user-images.githubusercontent.com/112770970/221235513-28a617ec-2217-452d-aa18-8230dea43691.JPG)
+
+
+- Synthesis
+
+![incomp if synth](https://user-images.githubusercontent.com/112770970/221235733-9426a6fe-b288-4430-9b38-e4e33bf6943b.JPG)
+
+- It can be seen that a latch is inferred as shown above.
+
+### Incomplete Case statements
+- Simulation
+
+![incomp case sim](https://user-images.githubusercontent.com/112770970/221245695-f79c6153-4a55-47a4-9aba-230700f5080b.JPG)
+
+
+- Synthesis
+
+![incomp case synth](https://user-images.githubusercontent.com/112770970/221245793-50a20891-670b-4868-b1ba-96087b354c85.JPG)
+
+- It can be seen that a latch is inferred as shown above.
+
+- The solution for the above problem is specifiying the default case.
+
+- The simulation and synthesis of case with default is shown below:
+
+![case with default sim](https://user-images.githubusercontent.com/112770970/221246682-7f36c4e3-bd66-4f9d-ab7c-2abba9e2f100.JPG)
+
+![case with default synth](https://user-images.githubusercontent.com/112770970/221246740-f4472080-c4a9-499c-a439-2c2d57002295.JPG)
+
+
+### Output register not assigned in a particular subcase
+- Simulation
+
+![bad case sim](https://user-images.githubusercontent.com/112770970/221247206-472daa5f-7639-4549-b40e-5964dc563941.JPG)
+
+
+- Simulation of the generated netlist (GLS)
+
+![bad case netlist sim](https://user-images.githubusercontent.com/112770970/221247470-a7563c7c-7c9a-4c9f-9ff2-a4a709a9f606.JPG)
+
+
+- It can be seen that there exists a simulation synthesis mismatch in this case as output in a particular subcase is not specified.
+
+
+### Loop and Generate Constructs
+- Loops are used to reduce the size of the RTL code in any complex situation.
+- Generate blocks are used to instantiate modules many times, in other words, it replicates hardware.
+
+### 1 x 8 Demux using for statements
+- Simulation
+
+![demux for loop sim](https://user-images.githubusercontent.com/112770970/221248795-322a358b-99f7-483f-9dc9-485b2cfab4f1.JPG)
+
+
+- Synthesis
+
+![demux for loop synthJPG](https://user-images.githubusercontent.com/112770970/221248861-b544f89e-a1d7-486b-af74-c6aa24d935a3.JPG)
+
+
+- Simulation of gate level netlist
+
+![demux for loop netlist sim](https://user-images.githubusercontent.com/112770970/221249009-791bbc62-7271-4ad1-8efb-2321d9fcee95.JPG)
+
+- It can be observed that there is no simulation synthesis mismatch arising in this case.
+
+### Ripple carry adder using generate loop
+- Simulation
+
+![rca sim](https://user-images.githubusercontent.com/112770970/221249549-a1500b22-11fa-434a-bda6-f42a118a4bf8.JPG)
+
+
+- Synthesis
+
+![rca synth](https://user-images.githubusercontent.com/112770970/221249636-2c05ba2b-bde2-43bd-8865-56d57f9ec640.JPG)
+
+
+- Simulation of gate level netlist
+
+![rca netlist sim](https://user-images.githubusercontent.com/112770970/221249716-cd59ad25-789d-4929-a82e-c8c3633d360d.JPG)
+
+- It can be noted that there is no simulation synthesis mismatch arising in this case.
+
+### Final Observations
+- Both if and case statements infer muxes but if statements have priority logic.
+- Incomplete if and case statements infer an unwanted latch.
+- All the outputs must be specified inside all the sub-cases else latches are inferred.
+- Overlapping cases in the case statements leads to ambiguous output.
+
+
 ## Day_6
+
 ### Universal shift Register
 - Simulation
 ![WhatsApp Image 2023-03-10 at 15 22 24](https://user-images.githubusercontent.com/83526493/224351419-173c716b-5bc8-49bd-8b66-6639a152bcac.jpg)
@@ -348,6 +493,7 @@ $ opt_clean -purge
 - It can be observed from the above images that there is no simulation synthesis mismatch occuring
 
 ## Day_7
+
 ### Basics of STA
 #### Max delay constraints
 *T <sub>clk</sub> >= T <sub>CQ</sub> + T <sub>comb</sub> + T <sub>setup</sub>*
