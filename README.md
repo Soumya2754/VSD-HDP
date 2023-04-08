@@ -12,7 +12,7 @@ Progress Quick-Link:<br />
 [Day 9](#Day_9)<br />
 
 
-## Day 0: Installation
+## Day 0
 *Before installing run the command below*
 ```
 $ sudo apt update && upgrade
@@ -95,7 +95,7 @@ $   sudo apt-get install libcairo2-dev
 $   sudo apt-get install mesa-common-dev libglu1-mesa-dev
 $   sudo apt-get install libncurses-dev
 ```
-## Day 1
+## Day_1
 Simulation of a 2x1 mux using iverilog
 
 *verilog code*
@@ -539,13 +539,15 @@ Note : The above equations are used in calculating maximum frequency of clock an
 
 - Note: All the above considerations are specified in the .lib file.
 
-## Day 8: STA analysis
+## Day_8
+### STA analysis
 	
 **Lab8_circuit timing report**
 
 ![lab8_circuit](https://user-images.githubusercontent.com/112770970/230723695-38337455-fc9e-486b-abb7-6753a7a1ddca.JPG)
 
-## Day 9: SDC file writing
+## Day_9
+### SDC file writing
 Constraints file
 ![Screenshot from 2023-04-08 18-28-46](https://user-images.githubusercontent.com/83526493/230722458-f2bd09d9-75e6-4cfe-a7f9-9ad1ed5c3dfd.png)
 
