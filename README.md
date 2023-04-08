@@ -8,6 +8,8 @@ Progress Quick-Link:<br />
 [Day 5](#Day_5)<br />
 [Day 6](#Day_6)<br />
 [Day 7](#Day_7)<br />
+[Day 8](#Day_8)<br />
+[Day 9](#Day_9)<br />
 
 
 ## Day 0: Installation
@@ -536,3 +538,66 @@ Note : The above equations are used in calculating maximum frequency of clock an
   * Non-unateness -> XOR XNOR
 
 - Note: All the above considerations are specified in the .lib file.
+
+## Day 8: STA analysis
+## Day 9: SDC file writing
+Constraints file
+![Screenshot from 2023-04-08 18-28-46](https://user-images.githubusercontent.com/83526493/230722458-f2bd09d9-75e6-4cfe-a7f9-9ad1ed5c3dfd.png)
+
+### Timing reports
+```OpenSTA> report_checks
+Startpoint: reset (input port clocked by MYCLK)
+Endpoint: d1/_4_ (recovery check against rising-edge clock MYCLK)
+Path Group: **async_default**
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   5.00    8.00 v input external delay
+   0.00    8.00 v reset (in)
+   0.13    8.13 ^ d1/_3_/Y (sky130_fd_sc_hd__clkinv_1)
+   0.00    8.13 ^ d1/_4_/RESET_B (sky130_fd_sc_hd__dfrtp_1)
+           8.13   data arrival time
+
+  10.00   10.00   clock MYCLK (rise edge)
+   3.00   13.00   clock network delay (ideal)
+  -0.50   12.50   clock uncertainty
+   0.00   12.50   clock reconvergence pessimism
+          12.50 ^ d1/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+   0.20   12.70   library recovery time
+          12.70   data required time
+---------------------------------------------------------
+          12.70   data required time
+          -8.13   data arrival time
+---------------------------------------------------------
+           4.58   slack (MET)
+
+
+Startpoint: d2/_4_ (rising edge-triggered flip-flop clocked by MYCLK)
+Endpoint: q[1] (output port clocked by MYCLK)
+Path Group: MYCLK
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.00    3.00 ^ d2/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+   2.70    5.70 ^ d2/_4_/Q (sky130_fd_sc_hd__dfrtp_1)
+   0.00    5.70 ^ q[1] (out)
+           5.70   data arrival time
+
+  10.00   10.00   clock MYCLK (rise edge)
+   3.00   13.00   clock network delay (ideal)
+  -0.50   12.50   clock uncertainty
+   0.00   12.50   clock reconvergence pessimism
+  -5.00    7.50   output external delay
+           7.50   data required time
+---------------------------------------------------------
+           7.50   data required time
+          -5.70   data arrival time
+---------------------------------------------------------
+           1.80   slack (MET)
+```
