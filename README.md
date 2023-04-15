@@ -10,9 +10,9 @@ Progress Quick-Link:<br />
 [Day 7](#Day_7)<br />
 [Day 8](#Day_8)<br />
 [Day 9](#Day_9)<br />
+[Day 10](#Day_10)<br />
 
-
-## Day 0
+## Day_0
 *Before installing run the command below*
 ```
 $ sudo apt update && upgrade
@@ -201,7 +201,7 @@ module good_mux(i0, i1, sel, y);
   assign y = _3_;
 endmodule
 ```
-## Day 2
+## Day_2
 
 ### Important notes
 - Standard Cell Library files will contain details of all types of individual cells with different parameters of area, power and delay.
@@ -279,7 +279,7 @@ Synchronous reset:
 ![7](https://user-images.githubusercontent.com/112770970/219857004-f9c586ba-d3b2-4f4b-acea-63524538e85e.JPG)
 
 - *In these cases, no cells are synthesised*
-## Day 3
+## Day_3
 
 ### Logic Optimizations
 - Combinational Logic Optimization
@@ -608,3 +608,47 @@ Path Type: max
 ---------------------------------------------------------
            1.80   slack (MET)
 ```
+## Day_10
+	
+[1] SPICE NMOS id/vds Diagram<br />
+![d10l1p1](images/day10_lab1_p1.png)<br /> 
+	
+## Day_11
+	
+[1] SPICE NMOS id/vds Diagram, small area but keep same ratio from day10 <br />
+![d11l1p1](images/day11_lab1_p1.png)<br />  
+
+[2] SPICE NMOS id/vgs Diagram <br />
+![d11l2p1](images/day11_lab2_p1.png)<br />  
+
+## Day_12
+	
+[1] Long-Channel vs Short-Channel<br />
+![d12l1p1](images/day12_lab1_p1.png)<br />
+
+[2] VTC from identical (W/L) P/NMOS<br />
+![d12l2p1](images/day12_lab2_p1.png)<br />  
+	
+## Day_13
+
+[1] VTC from Balanced P/NMOS Driving Strength<br />
+![d13l1p1](images/day13_lab1_p1.png)<br /> 
+	
+[2] Inverter Switching Transition Diagram<br />
+![d13l2p1](images/day13_lab2_p1.png)<br />  
+	
+## Day_14
+
+![d13lcp1](images/day14_lec_p1.png)<br /> 
+
+[1] Inverter Switching Transition Diagram<br />
+![d14l1p1](images/day14_lab1_p1.png)<br />  
+	
+## Day_15
+
+[1] Power-Supply Scaling<br />
+![d15l1p1](images/day15_lab1_p1.png)<br />  
+
+
+[2] Device Variation<br />
+![d15l2p1](images/day15_lab2_p1.png)<br /> 
