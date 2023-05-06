@@ -1,0 +1,176 @@
+Startpoint: reset (input port clocked by MYCLK)
+Endpoint: d1/_4_ (removal check against rising-edge clock MYCLK)
+Path Group: **async_default**
+Path Type: min
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.40    3.40 v input external delay
+   0.00    3.40 v reset (in)
+   0.07    3.47 ^ d1/_3_/Y (sky130_fd_sc_hd__clkinv_1)
+   0.00    3.47 ^ d1/_4_/RESET_B (sky130_fd_sc_hd__dfrtp_1)
+           3.47   data arrival time
+
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.10    3.10   clock uncertainty
+   0.00    3.10   clock reconvergence pessimism
+           3.10 ^ d1/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+   0.31    3.41   library removal time
+           3.41   data required time
+---------------------------------------------------------
+           3.41   data required time
+          -3.47   data arrival time
+---------------------------------------------------------
+           0.06   slack (MET)
+
+
+Startpoint: s[1] (input port clocked by MYCLK)
+Endpoint: d1/_4_ (rising edge-triggered flip-flop clocked by MYCLK)
+Path Group: MYCLK
+Path Type: min
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.10    3.10 ^ input external delay
+   0.00    3.10 ^ s[1] (in)
+   0.18    3.28 ^ m1/_16_/X (sky130_fd_sc_hd__mux4_2)
+   0.00    3.28 ^ d1/_4_/D (sky130_fd_sc_hd__dfrtp_1)
+           3.28   data arrival time
+
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.10    3.10   clock uncertainty
+   0.00    3.10   clock reconvergence pessimism
+           3.10 ^ d1/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+  -0.04    3.06   library hold time
+           3.06   data required time
+---------------------------------------------------------
+           3.06   data required time
+          -3.28   data arrival time
+---------------------------------------------------------
+           0.22   slack (MET)
+
+
+Startpoint: d4/_4_ (rising edge-triggered flip-flop clocked by MYCLK)
+Endpoint: q[3] (output port clocked by MYGEN_CLK)
+Path Group: MYGEN_CLK
+Path Type: min
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.00    3.00 ^ d4/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+   0.71    3.71 v d4/_4_/Q (sky130_fd_sc_hd__dfrtp_1)
+   0.00    3.71 v q[3] (out)
+           3.71   data arrival time
+
+   0.00    0.00   clock MYGEN_CLK (rise edge)
+   0.00    0.00   clock network delay (ideal)
+   0.00    0.00   clock reconvergence pessimism
+  -0.10   -0.10   output external delay
+          -0.10   data required time
+---------------------------------------------------------
+          -0.10   data required time
+          -3.71   data arrival time
+---------------------------------------------------------
+           3.81   slack (MET)
+
+
+Startpoint: reset (input port clocked by MYCLK)
+Endpoint: d1/_4_ (recovery check against rising-edge clock MYCLK)
+Path Group: **async_default**
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.50    3.50 v input external delay
+   0.00    3.50 v reset (in)
+   0.13    3.63 ^ d1/_3_/Y (sky130_fd_sc_hd__clkinv_1)
+   0.00    3.63 ^ d1/_4_/RESET_B (sky130_fd_sc_hd__dfrtp_1)
+           3.63   data arrival time
+
+  10.00   10.00   clock MYCLK (rise edge)
+   3.00   13.00   clock network delay (ideal)
+  -0.50   12.50   clock uncertainty
+   0.00   12.50   clock reconvergence pessimism
+          12.50 ^ d1/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+   0.20   12.70   library recovery time
+          12.70   data required time
+---------------------------------------------------------
+          12.70   data required time
+          -3.63   data arrival time
+---------------------------------------------------------
+           9.08   slack (MET)
+
+
+Startpoint: d2/_4_ (rising edge-triggered flip-flop clocked by MYCLK)
+Endpoint: d3/_4_ (rising edge-triggered flip-flop clocked by MYCLK)
+Path Group: MYCLK
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.00    3.00 ^ d2/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+   1.33    4.33 ^ d2/_4_/Q (sky130_fd_sc_hd__dfrtp_1)
+   0.48    4.81 ^ m3/_16_/X (sky130_fd_sc_hd__mux4_2)
+   0.00    4.81 ^ d3/_4_/D (sky130_fd_sc_hd__dfrtp_1)
+           4.81   data arrival time
+
+  10.00   10.00   clock MYCLK (rise edge)
+   3.00   13.00   clock network delay (ideal)
+  -0.50   12.50   clock uncertainty
+   0.00   12.50   clock reconvergence pessimism
+          12.50 ^ d3/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+  -0.07   12.43   library setup time
+          12.43   data required time
+---------------------------------------------------------
+          12.43   data required time
+          -4.81   data arrival time
+---------------------------------------------------------
+           7.62   slack (MET)
+
+
+Startpoint: d2/_4_ (rising edge-triggered flip-flop clocked by MYCLK)
+Endpoint: q[1] (output port clocked by MYGEN_CLK)
+Path Group: MYGEN_CLK
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock MYCLK (rise edge)
+   3.00    3.00   clock network delay (ideal)
+   0.00    3.00 ^ d2/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+   1.33    4.33 ^ d2/_4_/Q (sky130_fd_sc_hd__dfrtp_1)
+   0.00    4.33 ^ q[1] (out)
+           4.33   data arrival time
+
+  10.00   10.00   clock MYGEN_CLK (rise edge)
+   0.00   10.00   clock network delay (ideal)
+   0.00   10.00   clock reconvergence pessimism
+  -0.40    9.60   output external delay
+           9.60   data required time
+---------------------------------------------------------
+           9.60   data required time
+          -4.33   data arrival time
+---------------------------------------------------------
+           5.27   slack (MET)
+
+
+max_transition
+
+Pin m1/_16_/A2 ^
+max_transition     1.50
+transition_time    1.50
+-----------------------
+Slack              0.00 (MET)
+
