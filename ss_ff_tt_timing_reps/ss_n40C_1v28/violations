@@ -1,0 +1,34 @@
+Group                                  Slack
+--------------------------------------------
+**async_default**                      -1.86
+**async_default**                      -1.86
+**async_default**                      -1.86
+**async_default**                      -1.86
+MYCLK                                  -3.44
+MYCLK                                  -3.44
+MYCLK                                  -3.36
+MYCLK                                  -3.31
+MYGEN_CLK                              -0.79
+MYGEN_CLK                              -0.79
+MYGEN_CLK                              -0.74
+MYGEN_CLK                              -0.74
+
+max_transition
+
+Pin                                    Limit   Trans   Slack
+------------------------------------------------------------
+m1/_16_/A2                              1.50    7.75   -6.25 (VIOLATED)
+m2/_16_/A0                              1.50    7.75   -6.25 (VIOLATED)
+m2/_16_/A2                              1.50    7.75   -6.25 (VIOLATED)
+m3/_16_/A0                              1.50    7.75   -6.25 (VIOLATED)
+m3/_16_/A1                              1.50    7.75   -6.25 (VIOLATED)
+m4/_16_/A1                              1.50    7.75   -6.25 (VIOLATED)
+d2/_4_/Q                                1.50    7.75   -6.25 (VIOLATED)
+d3/_4_/Q                                1.50    7.75   -6.25 (VIOLATED)
+m1/_16_/A0                              1.50    7.69   -6.19 (VIOLATED)
+m2/_16_/A1                              1.50    7.69   -6.19 (VIOLATED)
+m3/_16_/A2                              1.50    7.68   -6.18 (VIOLATED)
+m4/_16_/A0                              1.50    7.68   -6.18 (VIOLATED)
+d1/_4_/Q                                1.50    7.69   -6.18 (VIOLATED)
+d4/_4_/Q                                1.50    7.68   -6.18 (VIOLATED)
+

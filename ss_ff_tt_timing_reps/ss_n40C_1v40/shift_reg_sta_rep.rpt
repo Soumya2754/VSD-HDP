@@ -1,0 +1,183 @@
+Warning: sta.tcl, 5 report_checks -verbose is not a known keyword or flag.
+Startpoint: reset (input port clocked by MYCLK)
+Endpoint: d1/_4_ (removal check against rising-edge clock MYCLK)
+Path Group: **async_default**
+Path Type: min
+
+Fanout       Cap      Slew     Delay      Time   Description
+------------------------------------------------------------------------------------
+                   0.0000    0.0000    0.0000   clock MYCLK (rise edge)
+                             3.0000    3.0000   clock network delay (ideal)
+                             0.4000    3.4000 v input external delay
+                   0.1000    0.0000    3.4000 v reset (in)
+    4    0.0100                                 reset (net)
+                   0.1000    0.0000    3.4000 v d1/_3_/A (sky130_fd_sc_hd__clkinv_1)
+                   0.0874    0.1445    3.5445 ^ d1/_3_/Y (sky130_fd_sc_hd__clkinv_1)
+    1    0.0030                                 d1/_1_ (net)
+                   0.0874    0.0000    3.5445 ^ d1/_4_/RESET_B (sky130_fd_sc_hd__dfrtp_1)
+                                       3.5445   data arrival time
+
+                   0.0000    0.0000    0.0000   clock MYCLK (rise edge)
+                             3.0000    3.0000   clock network delay (ideal)
+                             0.1000    3.1000   clock uncertainty
+                             0.0000    3.1000   clock reconvergence pessimism
+                                       3.1000 ^ d1/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+                             1.3158    4.4158   library removal time
+                                       4.4158   data required time
+------------------------------------------------------------------------------------
+                                       4.4158   data required time
+                                      -3.5445   data arrival time
+------------------------------------------------------------------------------------
+                                      -0.8712   slack (VIOLATED)
+
+
+Startpoint: s[1] (input port clocked by MYCLK)
+Endpoint: d1/_4_ (rising edge-triggered flip-flop clocked by MYCLK)
+Path Group: MYCLK
+Path Type: min
+
+Fanout       Cap      Slew     Delay      Time   Description
+------------------------------------------------------------------------------------
+                   0.0000    0.0000    0.0000   clock MYCLK (rise edge)
+                             3.0000    3.0000   clock network delay (ideal)
+                             0.1000    3.1000 ^ input external delay
+                   0.1000    0.0000    3.1000 ^ s[1] (in)
+    4    0.0117                                 s[1] (net)
+                   0.1000    0.0000    3.1000 ^ m1/_16_/S1 (sky130_fd_sc_hd__mux4_2)
+                   0.1184    0.5188    3.6188 ^ m1/_16_/X (sky130_fd_sc_hd__mux4_2)
+    1    0.0017                                 w1 (net)
+                   0.1184    0.0000    3.6188 ^ d1/_4_/D (sky130_fd_sc_hd__dfrtp_1)
+                                       3.6188   data arrival time
+
+                   0.0000    0.0000    0.0000   clock MYCLK (rise edge)
+                             3.0000    3.0000   clock network delay (ideal)
+                             0.1000    3.1000   clock uncertainty
+                             0.0000    3.1000   clock reconvergence pessimism
+                                       3.1000 ^ d1/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+                            -0.1314    2.9686   library hold time
+                                       2.9686   data required time
+------------------------------------------------------------------------------------
+                                       2.9686   data required time
+                                      -3.6188   data arrival time
+------------------------------------------------------------------------------------
+                                       0.6502   slack (MET)
+
+
+Startpoint: d4/_4_ (rising edge-triggered flip-flop clocked by MYCLK)
+Endpoint: q[3] (output port clocked by MYGEN_CLK)
+Path Group: MYGEN_CLK
+Path Type: min
+
+Fanout       Cap      Slew     Delay      Time   Description
+------------------------------------------------------------------------------------
+                   0.0000    0.0000    0.0000   clock MYCLK (rise edge)
+                             3.0000    3.0000   clock network delay (ideal)
+                   0.0000    0.0000    3.0000 ^ d4/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+                   1.0259    2.0586    5.0586 v d4/_4_/Q (sky130_fd_sc_hd__dfrtp_1)
+    3    0.1030                                 q[3] (net)
+                   1.0259    0.0000    5.0586 v q[3] (out)
+                                       5.0586   data arrival time
+
+                   0.0000    0.0000    0.0000   clock MYGEN_CLK (rise edge)
+                             0.0000    0.0000   clock network delay (ideal)
+                             0.0000    0.0000   clock reconvergence pessimism
+                            -0.1000   -0.1000   output external delay
+                                      -0.1000   data required time
+------------------------------------------------------------------------------------
+                                      -0.1000   data required time
+                                      -5.0586   data arrival time
+------------------------------------------------------------------------------------
+                                       5.1586   slack (MET)
+
+
+Startpoint: reset (input port clocked by MYCLK)
+Endpoint: d1/_4_ (recovery check against rising-edge clock MYCLK)
+Path Group: **async_default**
+Path Type: max
+
+Fanout       Cap      Slew     Delay      Time   Description
+------------------------------------------------------------------------------------
+                   0.0000    0.0000    0.0000   clock MYCLK (rise edge)
+                             3.0000    3.0000   clock network delay (ideal)
+                             0.5000    3.5000 v input external delay
+                   0.4000    0.0000    3.5000 v reset (in)
+    4    0.0100                                 reset (net)
+                   0.4000    0.0000    3.5000 v d1/_3_/A (sky130_fd_sc_hd__clkinv_1)
+                   0.1065    0.3259    3.8259 ^ d1/_3_/Y (sky130_fd_sc_hd__clkinv_1)
+    1    0.0030                                 d1/_1_ (net)
+                   0.1065    0.0000    3.8259 ^ d1/_4_/RESET_B (sky130_fd_sc_hd__dfrtp_1)
+                                       3.8259   data arrival time
+
+                   0.0000   10.0000   10.0000   clock MYCLK (rise edge)
+                             3.0000   13.0000   clock network delay (ideal)
+                            -0.5000   12.5000   clock uncertainty
+                             0.0000   12.5000   clock reconvergence pessimism
+                                      12.5000 ^ d1/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+                             0.8221   13.3221   library recovery time
+                                      13.3221   data required time
+------------------------------------------------------------------------------------
+                                      13.3221   data required time
+                                      -3.8259   data arrival time
+------------------------------------------------------------------------------------
+                                       9.4962   slack (MET)
+
+
+Startpoint: d2/_4_ (rising edge-triggered flip-flop clocked by MYCLK)
+Endpoint: d3/_4_ (rising edge-triggered flip-flop clocked by MYCLK)
+Path Group: MYCLK
+Path Type: max
+
+Fanout       Cap      Slew     Delay      Time   Description
+------------------------------------------------------------------------------------
+                   0.0000    0.0000    0.0000   clock MYCLK (rise edge)
+                             3.0000    3.0000   clock network delay (ideal)
+                   0.0000    0.0000    3.0000 ^ d2/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+                   4.8478    4.6147    7.6147 ^ d2/_4_/Q (sky130_fd_sc_hd__dfrtp_1)
+    4    0.1748                                 q[1] (net)
+                   4.8478    0.0000    7.6147 ^ m3/_16_/A1 (sky130_fd_sc_hd__mux4_2)
+                   0.1396    2.7919   10.4066 ^ m3/_16_/X (sky130_fd_sc_hd__mux4_2)
+    1    0.0017                                 w3 (net)
+                   0.1396    0.0000   10.4066 ^ d3/_4_/D (sky130_fd_sc_hd__dfrtp_1)
+                                      10.4066   data arrival time
+
+                   0.0000   10.0000   10.0000   clock MYCLK (rise edge)
+                             3.0000   13.0000   clock network delay (ideal)
+                            -0.5000   12.5000   clock uncertainty
+                             0.0000   12.5000   clock reconvergence pessimism
+                                      12.5000 ^ d3/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+                            -0.2688   12.2312   library setup time
+                                      12.2312   data required time
+------------------------------------------------------------------------------------
+                                      12.2312   data required time
+                                     -10.4066   data arrival time
+------------------------------------------------------------------------------------
+                                       1.8245   slack (MET)
+
+
+Startpoint: d2/_4_ (rising edge-triggered flip-flop clocked by MYCLK)
+Endpoint: q[1] (output port clocked by MYGEN_CLK)
+Path Group: MYGEN_CLK
+Path Type: max
+
+Fanout       Cap      Slew     Delay      Time   Description
+------------------------------------------------------------------------------------
+                   0.0000    0.0000    0.0000   clock MYCLK (rise edge)
+                             3.0000    3.0000   clock network delay (ideal)
+                   0.0000    0.0000    3.0000 ^ d2/_4_/CLK (sky130_fd_sc_hd__dfrtp_1)
+                   4.8478    4.6147    7.6147 ^ d2/_4_/Q (sky130_fd_sc_hd__dfrtp_1)
+    4    0.1748                                 q[1] (net)
+                   4.8478    0.0000    7.6147 ^ q[1] (out)
+                                       7.6147   data arrival time
+
+                   0.0000   10.0000   10.0000   clock MYGEN_CLK (rise edge)
+                             0.0000   10.0000   clock network delay (ideal)
+                             0.0000   10.0000   clock reconvergence pessimism
+                            -0.4000    9.6000   output external delay
+                                       9.6000   data required time
+------------------------------------------------------------------------------------
+                                       9.6000   data required time
+                                      -7.6147   data arrival time
+------------------------------------------------------------------------------------
+                                       1.9853   slack (MET)
+
+
