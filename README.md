@@ -544,3 +544,7 @@ Note : The above equations are used in calculating maximum frequency of clock an
 **Lab8_circuit timing report**
 
 ![lab8_circuit](https://user-images.githubusercontent.com/112770970/230723695-38337455-fc9e-486b-abb7-6753a7a1ddca.JPG)
+	
+## Day_10
+	Introduction to Spice
+![Screenshot from 2023-05-19 10-13-54](https://github.com/Soumya2754/VSD-HDP/assets/83526493/a646ea78-8892-41f3-977b-00f813f3eb31)
