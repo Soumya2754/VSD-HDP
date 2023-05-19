@@ -555,5 +555,4 @@ Note : The above equations are used in calculating maximum frequency of clock an
 	
 	ss,ff,tt corner libraries STA anaylsis
 	
-	![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/f882b0e3-c7d4-417e-a8f2-b77afdbf45a3)
-
+![WhatsApp Image 2023-05-20 at 01 56 56](https://github.com/Soumya2754/VSD-HDP/assets/83526493/9e7b45fd-776d-4aea-9698-c061fdde7c1a)
