@@ -9,8 +9,10 @@ Progress Quick-Link:<br />
 [Day 6](#Day_6)<br />
 [Day 7](#Day_7)<br />
 [Day 8](#Day_8)<br />
-[Day 11](#Day_11)<br />
-
+[Day 9](#Day_9)<br />
+[Day 10](#Day_10)<br />
+[Day 8](#STA_across_PVT_corners)<br />
+[PNR_flow](#PNR_flow)<br />
 
 
 ## Day_0
@@ -546,16 +548,55 @@ Note : The above equations are used in calculating maximum frequency of clock an
 **Lab8_circuit timing report**
 
 ![lab8_circuit](https://user-images.githubusercontent.com/112770970/230723695-38337455-fc9e-486b-abb7-6753a7a1ddca.JPG)
-	
-## Day_11
+
+## Day_9
+### Constraint file for USR:
+```
+create_clock -name MYCLK -per 10 [get_ports clk];
+set_clock_latency -source 2 [get_clocks MYCLK];
+set_clock_latency 1 [get_clocks MYCLK];
+set_clock_uncertainty -setup 0.5 [get_clocks MYCLK];
+set_clock_uncertainty -hold 0.1 [get_clocks MYCLK];
+set_input_delay -max 0.5 -clock [get_clocks MYCLK] [get_ports p];
+set_input_delay -max 0.5 -clock [get_clocks MYCLK] [get_ports s];
+set_input_delay -max 0.5 -clock [get_clocks MYCLK] [get_ports sr];
+set_input_delay -max 0.5 -clock [get_clocks MYCLK] [get_ports sl];
+set_input_delay -max 0.5 -clock [get_clocks MYCLK] [get_ports reset];
+set_input_delay -min 0.1 -clock [get_clocks MYCLK] [get_ports p];
+set_input_delay -min 0.1 -clock [get_clocks MYCLK] [get_ports s];
+set_input_delay -min 0.1 -clock [get_clocks MYCLK] [get_ports sr];
+set_input_delay -min 0.1 -clock [get_clocks MYCLK] [get_ports sl];
+set_input_delay -min 0.4 -clock [get_clocks MYCLK] [get_ports reset];
+set_input_transition -max 0.4 [get_ports p];
+set_input_transition -max 0.4 [get_ports s];
+set_input_transition -max 0.4 [get_ports sr];
+set_input_transition -max 0.4 [get_ports sl];
+set_input_transition -max 0.4 [get_ports reset];
+set_input_transition -min 0.1 [get_ports p];
+set_input_transition -min 0.1 [get_ports s];
+set_input_transition -min 0.1 [get_ports sr];
+set_input_transition -min 0.1 [get_ports sl];
+set_input_transition -min 0.1 [get_ports reset];
+create_generated_clock -name MYGEN_CLK -master MYCLK -source [get_ports clk] -div 1 [get_ports out_clk];
+set_output_delay -max 0.4 -clock [get_clocks MYGEN_CLK] [get_ports q];
+set_output_delay -min 0.1 -clock [get_clocks MYGEN_CLK] [get_ports q];
+set_load -max 0.17 [get_ports q];
+set_load -min 0.1 [get_ports q];
+
+```
+STA Report:
+![Screenshot from 2023-10-28 19-47-33](https://github.com/Soumya2754/VSD-HDP/assets/83526493/4e359a87-d0da-426e-ad3c-2570e31ce2e4)
+
+## Day_10
 	Introduction to Spice
 ![Screenshot from 2023-05-19 10-13-54](https://github.com/Soumya2754/VSD-HDP/assets/83526493/a646ea78-8892-41f3-977b-00f813f3eb31)
 	
-## Day_16
+## STA_across_PVT_corners
 	
 	ss,ff,tt corner libraries STA anaylsis
 	
 ![WhatsApp Image 2023-05-20 at 01 56 56](https://github.com/Soumya2754/VSD-HDP/assets/83526493/9e7b45fd-776d-4aea-9698-c061fdde7c1a)
 	![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/c5092d80-436b-4170-8925-94d7fd384fb7)
 
-	
+## PNR_flow
+
