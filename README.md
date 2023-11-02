@@ -603,6 +603,54 @@ STA Report:
 
 ### PNR flow for picorv32a
 ```
+Synthesis default settings
+```
+
+```
 run_synthesis
 ```
+![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/67cf40e9-8629-4e25-b028-57daabe6ab12)
+```
+sta
+```
+```
+init_floorplan
+```
+![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/073dcaf1-3082-4b5e-81eb-76322cdb704f)
+```
+run_placement
+```
+![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/88d3a15f-db54-47f0-844a-d867ecb95056)
+![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/13e9ffc1-cf62-4c69-8247-d3355acbcb51)
+```
+standard cell inclusion timing report
+```
+![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/1c674bfe-965d-45d8-a06a-d379e878a843)
+
+```
+run_cts
+```
+![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/426e3230-e261-4e0e-8ee4-6b5cb88a9e02)
+```
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/test/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/test/results/cts/picorv32a.cts.def
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/25-05_14-59/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock (all_clocks)
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/98cd37e2-5f74-49e6-8c8d-cf598ea7f269)
+![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/3a7e2afb-55c1-4d94-8be3-e7b9bf7756bc)
+![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/2e6d7d37-b553-4ade-b40e-20aa4d349b5a)
+```
+power distribution network 
+gen_pdn
+```
+![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/d26d199f-46a5-441b-8686-703f2e998210)
+
 
