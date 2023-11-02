@@ -599,6 +599,8 @@ STA Report:
 	![image](https://github.com/Soumya2754/VSD-HDP/assets/83526493/c5092d80-436b-4170-8925-94d7fd384fb7)
 
 ## PNR_flow
+![Screenshot from 2023-11-02 10-53-12](https://github.com/Soumya2754/VSD-HDP/assets/83526493/686e442c-445a-461a-928d-ec7ad05a0012)
+
 ### PNR flow for picorv32a
 ```
 run_synthesis
